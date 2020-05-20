@@ -1,0 +1,33 @@
+header {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, max-content));
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 24px 48px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+
+  #logo {
+    text-align: center;
+    position: absolute;
+    width: 200px;
+    left: calc(50% - 100px);
+  }
+}
+
+header nav {
+  ul {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, max-content));
+    list-style: none;
+    grid-gap: 12px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  a {
+    color: #252323;
+    text-decoration: none;
+  }
+}
