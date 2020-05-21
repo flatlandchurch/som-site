@@ -7,16 +7,33 @@ header {
   position: fixed;
   width: 100%;
   top: 0;
+  background: #fff;
+  align-items: center;
+  z-index: 100;
+
+  @media screen and (max-width: 640px) {
+    padding: 24px;
+    grid-template-columns: repeat(2, minmax(0, max-content));
+  }
 
   #logo {
     text-align: center;
     position: absolute;
     width: 200px;
     left: calc(50% - 100px);
+
+    @media screen and (max-width: 640px) {
+      left: auto;
+      right: 24px;
+    }
   }
 }
 
 header nav {
+  @media screen and (max-width: 640px) {
+    display: none;
+  }
+
   ul {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, max-content));
@@ -27,7 +44,15 @@ header nav {
   }
 
   a {
-    color: #252323;
+    color: var(--black);
     text-decoration: none;
+  }
+}
+
+header {
+  .secondary-menu {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, max-content));
+    grid-gap: 10px;
   }
 }

@@ -1,2 +1,13 @@
 {{ define "main" }}
+<div class="jumbotron">
+    {{ with .Params.Alert }}
+        <div class="alert">
+            <a href="{{ .Url }}">{{ .Label }}</a>
+        </div>
+    {{ end }}
+    <div class="jumbotron__meta">
+        <h1>{{ .Params.Callout | safeHTML }}</h1>
+        <a href="/visit" class="btn btn--primary m" style="--mtop: 24px">Plan a Visit</a>
+    </div>
+</div>
 {{ end }}

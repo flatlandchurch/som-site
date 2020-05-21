@@ -1,0 +1,25 @@
+.btn {
+  display: block;
+  text-decoration: none;
+  padding: 12px 30px;
+  box-sizing: border-box;
+  appearance: none;
+  background: var(--blue);
+  color: #fff;
+  width: max-content;
+  border-radius: 4px;
+}
+
+.menu-btn {
+  font-size: 14px;
+  font-weight: 600;
+  appearance: none;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: 0;
+
+  span {
+    margin-right: 4px;
+  }
+}

@@ -1,7 +1,30 @@
+:root {
+  --brand-orange: #C5531A;
+  --blue: #2A87BC;
+  --black: #172B4D;
+}
+
 * {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
+body {
+  color: var(--black);
+}
+
+a {
+  color: var(--blue);
+}
+
+.m {
+  margin-top: var(--mtop);
+  margin-bottom: var(--mbottom);
+  margin-left: var(--mleft);
+  margin-right: var(--mright);
+}
+
 @import 'header';
+@import 'button';
+@import 'jumbotron';
