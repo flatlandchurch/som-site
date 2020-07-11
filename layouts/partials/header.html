@@ -1,6 +1,6 @@
 <header>
     <div class="secondary-menu">
-        <button class="menu-btn">
+        <button class="menu-btn" id="open-menu">
             <span class="material-icons">
                 menu
             </span>
@@ -15,7 +15,8 @@
     </div>
     <div>
         <a href="/" id="logo">
-            <span>Omaha School of Ministry</span>
+            <span class="dt">Omaha School of Ministry</span>
+            <span class="mb">OSM</span>
         </a>
     </div>
     <nav>
@@ -26,3 +27,4 @@
         </ul>
     </nav>
 </header>
+{{ partial "menu.html" . }}
