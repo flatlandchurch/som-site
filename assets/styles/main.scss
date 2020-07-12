@@ -2,6 +2,7 @@
   --brand-orange: #C5531A;
   --blue: #2A87BC;
   --black: #172B4D;
+  --green: #11C488;
 
   --breakpoint: 640px;
 }
@@ -34,3 +35,4 @@ a {
 @import 'menu';
 @import 'page';
 @import 'form';
+@import 'testimonies';

@@ -15,4 +15,15 @@ Omaha School of Ministry
     </div>
     <img src="{{ .Params.Image }}" alt="Flatland Church" />
 </div>
+<div class="testimony">
+    <div class="testimony__content">
+        <img src="{{ .Params.Testimony.Image }}" alt="Testimony from {{ .Params.Testimony.Name }}" />
+        <div>
+            <blockquote>
+                {{ .Params.Testimony.Content | markdownify }}
+            </blockquote>
+            <span class="citation">- {{ .Params.Testimony.Name }}</span>
+        </div>
+    </div>
+</div>
 {{ end }}
