@@ -1,3 +1,3 @@
 ---
-title: Academics
+title: Majors & Tracks
 ---

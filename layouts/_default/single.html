@@ -1,3 +1,11 @@
 {{ define "main" }}
-<h1>{{ .Params.Title }}</h1>
+<article>
+    <header>
+        <span class="school">Omaha School of Ministry</span>
+        <h1>{{ .Params.Title }}</h1>
+    </header>
+    <div class="content-body">
+        {{ .Content }}
+    </div>
+</article>
 {{ end }}

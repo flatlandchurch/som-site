@@ -1,7 +1,7 @@
 <!doctype>
 <html lang="en-us">
     <head>
-        <title>Omaha School of Ministry</title>
+        <title>{{ block "title" . }} {{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }} {{ end }}</title>
         <meta charset="utf-8">
         <meta name="robots" content="index, follow">
         <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no">
@@ -16,6 +16,7 @@
         {{ partial "header.html" . }}
         {{ block "main" . }}
         {{ end }}
+        {{ partial "footer.html" . }}
         <script src="/main.js"></script>
     </body>
 </html>

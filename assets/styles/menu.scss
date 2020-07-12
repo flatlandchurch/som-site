@@ -1,21 +1,29 @@
 .menu {
   display: none;
   z-index: 3000;
-  position: absolute;
   background: #fff;
   width: 100%;
   height: 100vh;
   box-sizing: border-box;
-  padding: 24px 48px;
-  overflow: auto;
+  padding: 24px 48px 48px;
+  position: fixed;
+  top: 0;
+  grid-template-rows: minmax(0, max-content) 1fr;
+
+  @media screen and (max-width: 640px) {
+    padding: 24px;
+  }
 
   &.menu--active {
-    display: block;
+    display: grid;
   }
 }
 
 .menu__content {
   margin-top: 28px;
+  height: calc(100% - 52px);
+  display: grid;
+  grid-template-rows: minmax(0, max-content) 1fr  minmax(0, max-content);
 }
 
 .menu__nav {
@@ -57,11 +65,10 @@
 
   &.menu__nav--small {
     font-size: 1em;
-    margin-top: 240px;
   }
 }
 
-.menu .social-bar {
+.social-bar {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, max-content));
   grid-gap: 12px;

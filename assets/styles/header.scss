@@ -1,4 +1,4 @@
-header {
+header.main {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, max-content));
   justify-content: space-between;
@@ -24,12 +24,12 @@ header {
     align-items: center;
     text-decoration: none;
     font-weight: 800;
-    color: #000;
+    color: var(--black);
     top: 18px;
     font-size: 18px;
     padding: 6px;
     box-sizing: border-box;
-    border: 2px solid #000;
+    border: 2px solid var(--black);
 
     .mb {
       display: none;

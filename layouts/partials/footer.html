@@ -1,0 +1,38 @@
+<footer>
+    {{ if ne .Title "Request Info" }}
+    <div class="request-info">
+        <h2>Want to learn more?</h2>
+        <div class="request-info__form">
+            <input type="email" placeholder="Email" name="email-address" aria-label="Email Address" id="ri--email" />
+            <a href="/request-info" class="btn" id="ri--btn">Request Info</a>
+        </div>
+    </div>
+    <script>
+      (() => {
+        document.getElementById('ri--email').addEventListener('keyup', (e) => {
+          document.getElementById('ri--btn').href = `/request-info?email=${e.target.value}`;
+        });
+      })();
+    </script>
+    {{ end }}
+    <div class="main-footer">
+        <div class="social-bar">
+            <a href="https://facebook.com/flatlandchurchomaha"><span class="fa fa-facebook"></span></a>
+            <a href="https://instagram.com/flatlandchurch"><span class="fa fa-instagram"></span></a>
+            <a href="https://twitter.com/flatlandchurch"><span class="fa fa-twitter"></span></a>
+        </div>
+        <nav>
+            <a href="/privacy-policy">Privacy Policy</a>
+            <a href="/terms">Terms of Use</a>
+            <a href="/contact">Contact Us</a>
+        </nav>
+        <span class="copyright">
+            &copy; <span id="footer-year">2020</span> <a href="https://flatlandchurch.com">Flatland Church</a>
+        </span>
+    </div>
+</footer>
+<script>
+  (() => {
+    document.getElementById('footer-year').innerText = new Date().getFullYear().toString(10);
+  })();
+</script>
