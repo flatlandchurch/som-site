@@ -1,0 +1,55 @@
+<form id="form" data-page='{{ .Get "code" }}'>
+    <div class="form__control">
+        <label for="email">Email Address</label>
+        <input type="email" name="email" id="email" required />
+    </div>
+    <div class="form__row">
+        <div class="form__control">
+            <label for="first-name">First Name</label>
+            <input type="text" name="firstName" id="first-name" required />
+        </div>
+        <div class="form__control">
+            <label for="last-name">Last Name</label>
+            <input type="text" name="lastName" id="last-name" required />
+        </div>
+    </div>
+    {{ if eq (.Get "code") "info" }}
+        <div class="form__control">
+            <label for="phone">Phone Number (optional)</label>
+            <input type="text" name="phone-number" id="phone" />
+        </div>
+        <div class="form__control">
+            <label for="zip">Zip Code (optional)</label>
+            <input type="text" name="zipcode" id="zip" />
+        </div>
+        <div class="form__control">
+            <label for="program">What Ministry Track Most Interests You?</label>
+            <select id="program" required>
+                <option value="Campus Leadership">Campus Leadership</option>
+                <option value="Children’s Ministry">Children’s Ministry</option>
+                <option value="Church Administration">Church Administration</option>
+                <option value="Communications">Communications</option>
+                <option value="Evangelism & Discipleship">Evangelism & Discipleship</option>
+                <option value="Worship">Worship</option>
+                <option value="Youth Ministry">Youth Ministry</option>
+            </select>
+        </div>
+    {{ end }}
+    <button class="btn" type="submit">Submit</button>
+</form>
+
+<script>
+    function parseSearch(s) {
+      return (s || '').replace('?', '').split('&').reduce((acc, val) => {
+        const [k, v] = val.split('=');
+        acc[k] = v;
+        return acc;
+      }, {});
+    }
+  (() => {
+    const search = parseSearch(window.location.search);
+    if (search && search.email) {
+        document.getElementById('email').value = search.email;
+    }
+  })();
+</script>

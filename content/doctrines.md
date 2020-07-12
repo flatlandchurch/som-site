@@ -2,7 +2,7 @@
 title: Doctrinal Statement
 ---
 
-Omaha School of Ministry is operated by [Flatland Church](https://flatlandchurch.com), a member of a cooperative fellowship of churches called the [Assemblies of God](https://ag.org/). The list below is something that we every church in our fellowship affirms. Of course, a list without an explanation can often be unhelpful, that's why we encourage you to [plan a visit](/visit) to learn more about Omaha School of Ministry and Flatland Church.
+Omaha School of Ministry is operated by [Flatland Church](https://flatlandchurch.com), a member of a cooperative fellowship of churches called the [Assemblies of God](https://ag.org/). The list below is something that every church in our fellowship affirms. Of course, a list without an explanation can often be unhelpful, that's why we encourage you to [plan a visit](/visit) to learn more about Omaha School of Ministry and Flatland Church.
 
 ## Fundamental Truths
 
