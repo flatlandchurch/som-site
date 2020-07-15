@@ -1,6 +1,5 @@
 const got = require('got');
 const catchify = require('catchify');
-const { get } = require('dot-prop');
 
 const BASE_URL = 'https://api.planningcenteronline.com/people/v2';
 const BASE_OPTS = {

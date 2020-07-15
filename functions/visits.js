@@ -1,3 +1,13 @@
+const got = require('got');
+const catchify = require('catchify');
+
+const BASE_URL = 'https://api.planningcenteronline.com/people/v2';
+const BASE_OPTS = {
+  username: process.env.PCO_USERNAME,
+  password: process.env.PCO_PASSWORD,
+  method: 'POST',
+};
+
 const createPerson = require('./utils/createPerson');
 const checkPerson = require('./utils/checkPerson');
 
@@ -16,14 +26,13 @@ exports.handler = async function(event, context, callback) {
   } = JSON.parse(event.body);
 
   const person = await checkPerson(firstName, lastName, email);
-  console.log(person)
 
-  // const personId = await createPerson({
-  //   email,
-  //   firstName,
-  //   lastName,
-  //   phone
-  // });
+  const personId = person && person.id ? person.id : await createPerson({
+    email,
+    firstName,
+    lastName,
+    phone
+  });
 
   const workflowData = {
     data: {
@@ -33,13 +42,22 @@ exports.handler = async function(event, context, callback) {
     }
   };
 
-  // Do workflow work
+  const [err] = await catchify(got(`${BASE_URL}/workflows/227583/cards`, {
+    ...BASE_OPTS,
+    body: JSON.stringify(workflowData),
+  }).json());
+
+  if (err) {
+    console.log(err);
+  }
 
   return callback(null, {
     statusCode: 200,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      person
+      data: {
+
+      },
     }),
   });
 };
