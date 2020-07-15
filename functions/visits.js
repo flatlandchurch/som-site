@@ -1,4 +1,5 @@
 const got = require('got');
+const catchify = require('catchify');
 
 const BASE_URL = 'https://api.planningcenteronline.com/people/v2';
 
@@ -37,12 +38,14 @@ exports.handler = async function(event, context, callback) {
     primary: true,
   };
 
-  const [person, err] = await got(`${BASE_URL}/people`, {
+  const [person, err] = await catchify(got(`${BASE_URL}/people`, {
     method: 'POST',
     body: JSON.stringify(personData),
     username: process.env.PCO_USERNAME,
     password: process.env.PCO_PASSWORD,
-  }).json();
+  }).json());
+
+  console.log(err);
 
   return callback(null, {
     statusCode: 200,

@@ -66,6 +66,11 @@ cacheable-request@^7.0.1:
     normalize-url "^4.1.0"
     responselike "^2.0.0"
 
+catchify@^2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/catchify/-/catchify-2.6.1.tgz#c5eae8ccab3658a6c0a7fd757293bf88f21fb8c5"
+  integrity sha512-/2NfRTlCQIS/zoJbi04sLhKDJOJp4nW/LhzKkueDskDflt4sBBnol/F8JPuIOLeQfL4ceF+KYEHfQNqT4Y4y/w==
+
 clone-response@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/clone-response/-/clone-response-1.0.2.tgz#d1dc973920314df67fbeb94223b4ee350239e96b"
