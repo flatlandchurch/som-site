@@ -3,7 +3,7 @@ const got = require('got');
 const BASE_URL = 'https://api.planningcenteronline.com/people/v2';
 
 exports.handler = async function(event, context, callback) {
-  if (event.method !== 'post') {
+  if (event.httpMethod !== 'POST') {
     return callback('Method not supported');
   }
 
