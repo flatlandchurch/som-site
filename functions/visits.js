@@ -55,11 +55,11 @@ exports.handler = async function(event, context, callback) {
     got(`${BASE_URL}/people/${personId}/emails`, {
       body: JSON.stringify(emailData),
       ...BASE_OPTS,
-    }),
+    }).json(),
     got(`${BASE_URL}/people/${personId}/phone_numbers`, {
       body: JSON.stringify(phoneData),
       ...BASE_OPTS,
-    }),
+    }).json(),
   ]);
 
   // Do workflow work
