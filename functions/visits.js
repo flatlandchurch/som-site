@@ -1,7 +1,13 @@
 const got = require('got');
 const catchify = require('catchify');
+const { get } = require('dot-prop');
 
 const BASE_URL = 'https://api.planningcenteronline.com/people/v2';
+const BASE_OPTS = {
+  username: process.env.PCO_USERNAME,
+  password: process.env.PCO_PASSWORD,
+  method: 'POST',
+};
 
 exports.handler = async function(event, context, callback) {
   if (event.httpMethod !== 'POST') {
@@ -38,12 +44,25 @@ exports.handler = async function(event, context, callback) {
     primary: true,
   };
 
-  const [person, err] = await catchify(got(`${BASE_URL}/people`, {
-    method: 'POST',
+  const [err, person] = await catchify(got(`${BASE_URL}/people`, {
     body: JSON.stringify(personData),
-    username: process.env.PCO_USERNAME,
-    password: process.env.PCO_PASSWORD,
+    ...BASE_OPTS,
   }).json());
+
+  const personId = get(person, 'data.id');
+
+  await Promise.all([
+    got(`${BASE_URL}/people/${personId}/emails`, {
+      body: JSON.stringify(emailData),
+      ...BASE_OPTS,
+    }),
+    got(`${BASE_URL}/people/${personId}/phone_numbers`, {
+      body: JSON.stringify(phoneData),
+      ...BASE_OPTS,
+    }),
+  ]);
+
+  // Do workflow work
 
   console.log(err);
 
