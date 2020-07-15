@@ -15,7 +15,7 @@
     </div>
     <div class="form__control">
         <label for="phone">Phone Number (optional)</label>
-        <input type="text" name="phone-number" id="phone" />
+        <input type="text" name="phone" id="phone" />
     </div>
     {{ if eq (.Get "code") "info" }}
         <div class="form__control">
@@ -51,5 +51,24 @@
     if (search && search.email) {
         document.getElementById('email').value = search.email;
     }
+
+    document.getElementById('form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const data = {};
+      for (const field of e.target) {
+        if (field.name) {
+          data[field.name] = field.value;
+        }
+      }
+
+      const res = await fetch('/.netlify/functions/visits', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      console.log(res);
+    })
   })();
 </script>
