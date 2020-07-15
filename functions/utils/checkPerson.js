@@ -20,7 +20,7 @@ module.exports = async (firstName, lastName, email) => {
   const [err, people] = await catchify(got(`${BASE_URL}/people?where[search_name_or_email]=${email}`, {
     ...BASE_OPTS,
     method: 'GET',
-  }));
+  }).json());
 
   if (err) return null;
 
