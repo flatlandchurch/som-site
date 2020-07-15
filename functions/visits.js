@@ -58,7 +58,7 @@ exports.handler = async function(event, context, callback) {
         type: 'success_message',
         attributes: {
           content: snarkdown(`### Thank you, ${firstName}!
-          We'll follow up in the next few days to plan your visit with us. We can't wait to meet you.`),
+We'll follow up in the next few days to plan your visit with us. We can't wait to meet you.`),
         }
       },
     }),

@@ -48,12 +48,12 @@
     }
 
     const fetchCodes = {
-      visit: (data) => fetch('/.netlify/functions/visits', {
+      visit: (data) => fetch('https://omasom.com/.netlify/functions/visits', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       }),
-      info: (data) => fetch('/.netlify/functions/info', {
+      info: (data) => fetch('https://omasom.com/.netlify/functions/info', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)
@@ -75,10 +75,11 @@
         }
       }
 
+      document.querySelector('button[type="submit"]').disabled = true;
       // TODO: probably rename this at some point
       const res = await (await fetchCodes[e.target.dataset.page](data)).json();
 
-      console.log(res);
+      document.getElementById('form').innerHTML = res.data.attributes.content;
     })
   })();
 </script>
