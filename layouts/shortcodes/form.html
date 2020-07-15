@@ -75,7 +75,9 @@
         }
       }
 
-      document.querySelector('button[type="submit"]').disabled = true;
+      const btn = document.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.innerText = 'Sending...';
       // TODO: probably rename this at some point
       const res = await (await fetchCodes[e.target.dataset.page](data)).json();
 
