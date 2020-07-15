@@ -49,22 +49,31 @@ exports.handler = async function(event, context, callback) {
     ...BASE_OPTS,
   }).json());
 
+  if (err) {
+    console.log(err);
+  }
+
   const personId = get(person, 'data.id');
 
-  await Promise.all([
-    got(`${BASE_URL}/people/${personId}/emails`, {
-      body: JSON.stringify(emailData),
-      ...BASE_OPTS,
-    }).json(),
-    got(`${BASE_URL}/people/${personId}/phone_numbers`, {
-      body: JSON.stringify(phoneData),
-      ...BASE_OPTS,
-    }).json(),
-  ]);
+  const [emailErr] = await catchify(got(`${BASE_URL}/people/${personId}/emails`, {
+    body: JSON.stringify(emailData),
+    ...BASE_OPTS,
+  }).json());
+
+  if (emailErr) {
+    console.log(emailErr);
+  }
+
+  const [phoneErr] = await catchify(got(`${BASE_URL}/people/${personId}/phone_numbers`, {
+    body: JSON.stringify(phoneData),
+    ...BASE_OPTS,
+  }).json());
+
+  if (phoneErr) {
+    console.log(phoneErr);
+  }
 
   // Do workflow work
-
-  console.log(err);
 
   return callback(null, {
     statusCode: 200,
