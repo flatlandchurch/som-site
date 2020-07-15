@@ -79,7 +79,8 @@ exports.handler = async function(event, context, callback) {
       data: {
         type: 'success_message',
         attributes: {
-          content: snarkdown(`### Thank you, ${firstName}!\n\nWe'll get you some more information ASAP.`),
+          content: snarkdown(`### Thank you, ${firstName}!
+          We'll get you some more information ASAP.`),
         }
       },
     }),
