@@ -24,7 +24,7 @@
         </div>
         <div class="form__control">
             <label for="program">What Ministry Track Most Interests You?</label>
-            <select id="program" required>
+            <select id="program" required name="program">
                 <option value="Campus Leadership">Campus Leadership</option>
                 <option value="Children’s Ministry">Children’s Ministry</option>
                 <option value="Church Administration">Church Administration</option>
@@ -46,6 +46,19 @@
         return acc;
       }, {});
     }
+
+    const fetchCodes = {
+      visit: (data) => fetch('/.netlify/functions/visits', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      }),
+      info: (data) => fetch('/.netlify/functions/info', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+      }),
+    };
   (() => {
     const search = parseSearch(window.location.search);
     if (search && search.email) {
@@ -62,11 +75,8 @@
         }
       }
 
-      const res = await fetch('/.netlify/functions/visits', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
+      // TODO: probably rename this at some point
+      const res = await (await fetchCodes[e.target.dataset.page](data)).json();
 
       console.log(res);
     })

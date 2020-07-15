@@ -9,7 +9,7 @@ const BASE_OPTS = {
   method: 'POST',
 };
 
-module.exports = async ({ lastName, firstName, email, phone }) => {
+module.exports = async ({ lastName, firstName, email, phone, zipcode }) => {
   const personData = {
     data: {
       type: 'person',
@@ -43,6 +43,15 @@ module.exports = async ({ lastName, firstName, email, phone }) => {
     },
   };
 
+  const addressData = zipcode && {
+    data: {
+      type: 'Address',
+      attributes: {
+        zip: zipcode,
+      }
+    }
+  };
+
   const [err, person] = await catchify(got(`${BASE_URL}/people`, {
     body: JSON.stringify(personData),
     ...BASE_OPTS,
@@ -71,6 +80,17 @@ module.exports = async ({ lastName, firstName, email, phone }) => {
 
     if (phoneErr) {
       console.log(phoneErr);
+    }
+  }
+
+  if (addressData) {
+    const [addressErr] = await catchify(got(`${BASE_URL}/people/${personId}/addresses`, {
+      body: JSON.stringify(addressData),
+      ...BASE_OPTS,
+    }).json());
+
+    if (addressErr) {
+      console.log(addressErr);
     }
   }
 

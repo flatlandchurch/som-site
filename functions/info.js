@@ -2,15 +2,15 @@ const got = require('got');
 const catchify = require('catchify');
 const snarkdown = require('snarkdown');
 
+const checkPerson = require('./utils/checkPerson');
+const createPerson = require('./utils/createPerson');
+
 const BASE_URL = 'https://api.planningcenteronline.com/people/v2';
 const BASE_OPTS = {
   username: process.env.PCO_USERNAME,
   password: process.env.PCO_PASSWORD,
   method: 'POST',
 };
-
-const createPerson = require('./utils/createPerson');
-const checkPerson = require('./utils/checkPerson');
 
 exports.handler = async function(event, context, callback) {
   if (event.httpMethod !== 'POST') {
@@ -21,7 +21,9 @@ exports.handler = async function(event, context, callback) {
     email,
     firstName,
     lastName,
-    phone
+    phone,
+    zipcode,
+    program,
   } = JSON.parse(event.body);
 
   const person = await checkPerson(firstName, lastName, email);
@@ -30,7 +32,8 @@ exports.handler = async function(event, context, callback) {
     email,
     firstName,
     lastName,
-    phone
+    phone,
+    zipcode,
   });
 
   const workflowData = {
@@ -41,13 +44,32 @@ exports.handler = async function(event, context, callback) {
     }
   };
 
-  const [err] = await catchify(got(`${BASE_URL}/workflows/227583/cards`, {
+  const [err, workflow] = await catchify(got(`${BASE_URL}/workflows/228004/cards`, {
     ...BASE_OPTS,
     body: JSON.stringify(workflowData),
   }).json());
 
   if (err) {
     console.log(err);
+  }
+
+  const workflowNote = {
+    data: {
+      type: 'WorkflowCardNote',
+      attributes: {
+        note_category_id: '127515',
+        note: `**Program of Interest**: ${program}`,
+      },
+    },
+  };
+
+  const [noteErr] = await catchify(got(`${BASE_URL}/people/${personId}/workflow_cards/${workflow.data.id}/notes`, {
+    ...BASE_OPTS,
+    body: JSON.stringify(workflowNote),
+  }).json());
+
+  if (noteErr) {
+    console.log(noteErr);
   }
 
   return callback(null, {
@@ -57,7 +79,7 @@ exports.handler = async function(event, context, callback) {
       data: {
         type: 'success_message',
         attributes: {
-          content: snarkdown(`### Thank you, ${firstName}!\n\nWe'll follow up in the next few days to plan your visit with us. We can't wait to meet you.`),
+          content: snarkdown(`### Thank you, ${firstName}!\n\nWe'll get you some more information ASAP.`),
         }
       },
     }),
