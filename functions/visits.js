@@ -33,15 +33,25 @@ exports.handler = async function(event, context, callback) {
   };
 
   const emailData = {
-    address: email,
-    location: 'home',
-    primary: true,
+    data: {
+      type: 'Email',
+      attributes: {
+        address: email,
+        location: 'home',
+        primary: true,
+      }
+    }
   };
 
   const phoneData = phone && {
-    number: phone,
-    location: 'home',
-    primary: true,
+    data: {
+      type: 'PhoneNumber',
+      attributes: {
+        number: phone,
+        location: 'home',
+        primary: true,
+      },
+    },
   };
 
   const [err, person] = await catchify(got(`${BASE_URL}/people`, {
@@ -64,13 +74,15 @@ exports.handler = async function(event, context, callback) {
     console.log(emailErr);
   }
 
-  const [phoneErr] = await catchify(got(`${BASE_URL}/people/${personId}/phone_numbers`, {
-    body: JSON.stringify(phoneData),
-    ...BASE_OPTS,
-  }).json());
+  if (phoneData) {
+    const [phoneErr] = await catchify(got(`${BASE_URL}/people/${personId}/phone_numbers`, {
+      body: JSON.stringify(phoneData),
+      ...BASE_OPTS,
+    }).json());
 
-  if (phoneErr) {
-    console.log(phoneErr);
+    if (phoneErr) {
+      console.log(phoneErr);
+    }
   }
 
   // Do workflow work
