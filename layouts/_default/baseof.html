@@ -1,7 +1,7 @@
 <!doctype>
 <html lang="en-us">
     <head>
-        <title>{{ block "title" . }} {{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }} {{ end }}</title>
+        <title>{{ partial "title.html" . }}</title>
         <meta charset="utf-8">
         <meta name="robots" content="index, follow">
         <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no">
@@ -11,21 +11,21 @@
         <link rel="stylesheet" href="{{ $style.Permalink }}">
         {{ block "meta" . }}
         {{ end }}
-        <meta name="title" content='{{ block "title" . }} {{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }} {{ end }}'>
+        <meta name="title" content='{{ partial "title.html" . }}'>
         <meta name="description" content="Biblically-centered, ministry-driven, accredited school of ministry based in West Omaha.">
         <link rel="canonical" href="https://omasom.com">
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website">
         <meta property="og:url" content="https://omasom.com/">
-        <meta property="og:title" content='{{ block "title" . }} {{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }} {{ end }}'>
+        <meta property="og:title" content='{{ partial "title.html" . }}'>
         <meta property="og:description" content="Biblically-centered, ministry-driven, accredited school of ministry based in West Omaha.">
         <meta property="og:image" content="https://i.imgur.com/4InNQgK.jpg">
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image">
         <meta property="twitter:url" content="https://omasom.com/">
-        <meta property="twitter:title" content='{{ block "title" . }} {{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }} {{ end }}'>
+        <meta property="twitter:title" content='{{ partial "title.html" . }}'>
         <meta property="twitter:description" content="Biblically-centered, ministry-driven, accredited school of ministry based in West Omaha.">
         <meta property="twitter:image" content="https://i.imgur.com/4InNQgK.jpg">
     </head>
