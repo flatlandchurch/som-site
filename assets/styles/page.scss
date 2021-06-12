@@ -96,3 +96,17 @@ article {
     text-align: left;
   }
 }
+
+.video {
+  width: 100%;
+  position: relative;
+  padding-bottom: 56%;
+
+  iframe {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+  }
+}

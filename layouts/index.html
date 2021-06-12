@@ -10,6 +10,9 @@ Omaha School of Ministry
         </div>
     {{ end }}
     <div class="jumbotron__meta">
+        {{ with .Params.Prop }}
+        <img class="jumbotron__prop" src="{{ .Href }}" alt="{{ .Alt }}" />
+        {{ end }}
         <h1>{{ .Params.Callout | safeHTML }}</h1>
         <a href="/visit" class="btn btn--primary m" style="--mtop: 24px">Plan a Visit</a>
     </div>
@@ -17,13 +20,16 @@ Omaha School of Ministry
 </div>
 <div class="testimony">
     <div class="testimony__content">
-        <img src="{{ .Params.Testimony.Image }}" alt="Testimony from {{ .Params.Testimony.Name }}" />
-        <div>
-            <blockquote>
-                {{ .Params.Testimony.Content | markdownify }}
-            </blockquote>
-            <span class="citation">- {{ .Params.Testimony.Name }}</span>
+        <div class="video">
+            <iframe
+                    src="https://player.vimeo.com/video/562176595?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                    frameborder="0"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowfullscreen
+                    title="OSM Promo.mov">
+            </iframe>
         </div>
+        <script src="https://player.vimeo.com/api/player.js"></script>
     </div>
 </div>
 {{ end }}
