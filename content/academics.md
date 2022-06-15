@@ -56,4 +56,4 @@ OSM Fee includes books and materials, personal mentoring, ministry experiences, 
 
 Financial aid and scholarships are available. 
 - [SAGU Scholarship info](https://www.sagu.edu/financial-aid/scholarships)
-- [OSM Scholarship](/) 
+- [OSM Scholarship](https://flatland.churchcenter.com/people/forms/395663) 
